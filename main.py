@@ -35,3 +35,13 @@ create_file()
 def save(user, t_type, category, amount):
     with open(FILE, "a") as f:
         f.write(f"{user},{t_type},{category},{amount},{datetime.now()}\n")
+
+def read(user):
+    data = []
+    with open(FILE, "r") as f:
+        next(f)
+        for line in f:
+            u, t, c, a, d = line.strip().split(",")
+            if str(user) == u:
+                data.append((t, c, float(a), d))
+    return data
