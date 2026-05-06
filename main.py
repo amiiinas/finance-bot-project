@@ -31,3 +31,7 @@ def create_file():
     with open(FILE, 'w') as f:
       f.write('user,type,category,amount,date\n')
 create_file()
+
+def save(user, t_type, category, amount):
+    with open(FILE, "a") as f:
+        f.write(f"{user},{t_type},{category},{amount},{datetime.now()}\n")
