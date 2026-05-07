@@ -45,3 +45,13 @@ def read(user):
             if str(user) == u:
                 data.append((t, c, float(a), d))
     return data
+
+@bot.message_handler(commands=['start'])
+def start(msg):
+    bot.send_message(msg.chat.id,
+    "💸 Finance Bot\n\n"
+    "/income - add income\n"
+    "/expense - add expense\n"
+    "/balance - show balance\n"
+    "/daily - today report\n"
+    "/weekly - weekly report")
