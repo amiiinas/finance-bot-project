@@ -55,3 +55,26 @@ def start(msg):
     "/balance - show balance\n"
     "/daily - today report\n"
     "/weekly - weekly report")
+
+@bot.message_handler(commands=['income'])
+def income(msg):
+    bot.send_message(msg.chat.id, "Enter amount and category (example: 5000 salary)")
+    bot.register_next_step_handler(msg, process_income)
+
+def process_income(msg):
+    try:
+        amount, category = msg.text.split()
+
+        amount = float(amount)
+        if amount <= 0:
+            bot.send_message(msg.chat.id, "❌ Amount must be positive")
+            return
+
+        if category not in categories:
+            category = "other"
+
+        save(msg.chat.id, "income", category, amount)
+        bot.send_message(msg.chat.id, "✅ Income saved")
+
+    except:
+        bot.send_message(msg.chat.id, "❌ Wrong format")
