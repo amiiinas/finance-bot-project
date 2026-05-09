@@ -102,3 +102,21 @@ def process_expense(msg):
 
     except:
         bot.send_message(msg.chat.id, "❌ Wrong format")
+#balance
+@bot.message_handler(commands=['balance'])
+
+def balance(msg):
+    data=read(msg.chat.id)
+    
+    income = 0
+    expense = 0
+
+    for t, c, a, d in data:
+        if t == "income":
+            income += a
+        else:
+            expense += a
+    bot.send_message(msg.chat.id,
+        f"💰 Income: {income}\n"
+        f"💸 Expense: {expense}\n"
+        f"📊 Balance: {income - expense}")
