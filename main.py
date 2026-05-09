@@ -78,3 +78,8 @@ def process_income(msg):
 
     except:
         bot.send_message(msg.chat.id, "❌ Wrong format")
+@bot.message_handler(commands=['income'])
+def income(msg):
+    bot.send_message(msg.chat.id, "Enter amount and category (example: 5000 food)")
+    bot.register_next_step_handler(msg, process_income)
+
