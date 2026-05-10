@@ -55,7 +55,7 @@ def start(msg):
     "/balance - show balance\n"
     "/daily - today report\n"
     "/weekly - weekly report")
-#adding income
+#income function
 @bot.message_handler(commands=['income'])
 def income(msg):
     bot.send_message(msg.chat.id, "Enter amount and category (example: 5000 salary)")
@@ -79,7 +79,7 @@ def process_income(msg):
     except:
         bot.send_message(msg.chat.id, "❌ Wrong format")
 
-#adding expense
+#expense function
 @bot.message_handler(commands=['expense'])
 def expense(msg):
     bot.send_message(msg.chat.id, "Enter amount and category (example: 2000 food)")
@@ -102,7 +102,7 @@ def process_expense(msg):
 
     except:
         bot.send_message(msg.chat.id, "❌ Wrong format")
-#balance
+#balance function
 @bot.message_handler(commands=['balance'])
 
 def balance(msg):
@@ -120,7 +120,7 @@ def balance(msg):
         f"💰 Income: {income}\n"
         f"💸 Expense: {expense}\n"
         f"📊 Balance: {income - expense}")
-#addind daily report
+#daily report function
 @bot.message_handler(commands=['daily'])
 def daily(msg):
     data = read(msg.chat.id)
@@ -140,7 +140,7 @@ def daily(msg):
     bot.send_message(msg.chat.id,
         f"📅 Today\nIncome: {inc}\nExpense: {exp}\nBalance: {inc-exp}")
 
-#adding weekly report
+#weekly report function
 @bot.message_handler(commands=['weekly'])
 def weekly(msg):
     data = read(msg.chat.id)
