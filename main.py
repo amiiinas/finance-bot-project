@@ -14,7 +14,7 @@ import csv
 import os
 from datetime import datetime, timedelta
 
-TOKEN = '8263687452:AAHer-aV77fx6pfu1oCBmCdxLpYKB3DH0SA'
+TOKEN = 'Token'
 bot = telebot.TeleBot(TOKEN)
 FILE = 'finance.csv'
 
