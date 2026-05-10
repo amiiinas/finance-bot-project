@@ -120,3 +120,45 @@ def balance(msg):
         f"💰 Income: {income}\n"
         f"💸 Expense: {expense}\n"
         f"📊 Balance: {income - expense}")
+#addind daily report
+@bot.message_handler(commands=['daily'])
+def daily(msg):
+    data = read(msg.chat.id)
+    today = datetime.now().date()
+
+    inc = 0
+    exp = 0
+
+    for t, c, a, d in data:
+        d = datetime.fromisoformat(d).date()
+        if d == today:
+            if t == "income":
+                inc += a
+            else:
+                exp += a
+
+    bot.send_message(msg.chat.id,
+        f"📅 Today\nIncome: {inc}\nExpense: {exp}\nBalance: {inc-exp}")
+
+#adding weekly report
+@bot.message_handler(commands=['weekly'])
+def weekly(msg):
+    data = read(msg.chat.id)
+    week_ago = datetime.now() - timedelta(days=7)
+
+    inc = 0
+    exp = 0
+
+    for t, c, a, d in data:
+        d = datetime.fromisoformat(d)
+        if d >= week_ago:
+            if t == "income":
+                inc += a
+            else:
+                exp += a
+
+    bot.send_message(msg.chat.id,
+        f"📊 Weekly\nIncome: {inc}\nExpense: {exp}\nBalance: {inc-exp}")
+
+print("Bot is running...")
+bot.polling()
