@@ -1,4 +1,6 @@
 # finance-bot-project
+### Amanzholova Kamila and Serikova Amina
+
 ## Description
 Our project is about creating simple financial tracking system. IT was created using Telegram boе and Python(Google colab)
 It helps users to track their incomes and expenses also see their balance and create daily and weekly reports 
@@ -25,3 +27,6 @@ It helps users to track their incomes and expenses also see their balance and cr
 - The bot processes the message
 - The data is saved into a CSV file
 - The bot calculates income, expenses, and balance
+
+## Limitations
+The bot works only while the code is running in Google Colab.
